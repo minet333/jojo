@@ -1,0 +1,5 @@
+language: C
+
+script:
+  - gcc -mtune=native -O3 -Wall -O jojo main.c
+  - ./jojo
