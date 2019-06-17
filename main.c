@@ -1,7 +1,10 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <stddef.h>
+#include <errno.h>
+#include <stdarg.h>
 #include <libdill.h>
 
 #define ATTACKERS_COUNT 100
@@ -9,17 +12,42 @@
 
 void generate_pair(const char **login, const char **password);
 coroutine void run_attacker();
+void _Noreturn panic(const char *format, ...);
 
 int main() {
-	int all = bundle();
-	assert(all != -1);
+	int all;
+	if ((all = bundle()) == -1)
+		panic("Failed to create the main bundle");
 
 	for (size_t i = 0; i < ATTACKERS_COUNT; i++) {
-		assert(bundle_go(all, run_attacker()) != -1);
+		int res =  bundle_go(all, run_attacker());
+		if (res == -1) {
+			panic("Failed to spawn a coroutine");
+		}
 	}
 
-	assert(bundle_wait(all, TOTAL_DEADLINE) != -1);
+	if (bundle_wait(all, TOTAL_DEADLINE) == -1) {
+		panic("Failed to wait for the main bundle");
+	}
+
+	if (hclose(all) == -1) {
+		panic("Failed to close the main bundle");
+	}
+
         return EXIT_SUCCESS;
+}
+
+void _Noreturn panic(const char *format, ...) {
+	va_list args;
+	va_start(args, format);
+
+	fputs("PANIC! ---> ", stderr);
+	vfprintf(stderr, format, args);
+	fputs("\n", stderr);
+	fprintf(stderr, "SYSTEM ERROR: %s\n", strerror(errno));
+
+	va_end(args);
+	abort();
 }
 
 coroutine void run_attacker() {
