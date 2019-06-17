@@ -19,7 +19,7 @@ script:
   - cd libdill-2.14
   - ./configure --enable-tls
   - make --jobs=4
-  - sudo make insall
+  - sudo make install
 
   # Compile and run
   - gcc -mtune=native -O3 -Wall -o jojo -ldill main.c
