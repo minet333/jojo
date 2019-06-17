@@ -102,6 +102,6 @@ void generate_pair(const char **login, const char **password) {
 		"nvbxms"  // #70
 	};
 
-	*login = logins[rand() % sizeof(logins) / sizeof(logins[0])];
+	*login = logins[rand() % (sizeof(logins) / sizeof(logins[0]))];
 	*password = "njwofghunwrjdsh397345";
 }
