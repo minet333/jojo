@@ -19,7 +19,7 @@ int main() {
 		assert(bundle_go(all, run_attacker()) != -1);
 	}
 
-	assert(bundle_wait(all, now() + TOTAL_DEADLINE) != -1);
+	assert(bundle_wait(all, TOTAL_DEADLINE) != -1);
         return EXIT_SUCCESS;
 }
 
