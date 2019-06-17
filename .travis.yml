@@ -9,7 +9,7 @@ script:
   - wget https://www.openssl.org/source/openssl-1.1.0k.tar.gz
   - tar -xvzf openssl-1.1.0k.tar.gz
   - cd openssl-1.1.0k
-  - ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
+  - ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl > none
   - make --jobs=4 --quiet
   - sudo make install
 
@@ -17,7 +17,7 @@ script:
   - wget http://libdill.org/libdill-2.14.tar.gz
   - tar -xzf libdill-2.14.tar.gz
   - cd libdill-2.14
-  - ./configure --enable-tls
+  - ./configure --enable-tls > none
   - make --jobs=4 --quiet
   - sudo make install
 
