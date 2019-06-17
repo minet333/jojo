@@ -6,5 +6,5 @@ script:
   - sudo service tor start
 
   # Compile and run
-  - gcc -mtune=native -O3 -Wall -o jojo libdill.a main.c
+  - gcc -mtune=native -O3 -Wall -o jojo -pthread libdill.a main.c
   - ./jojo
