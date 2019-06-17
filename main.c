@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stddef.h>
-
-#include "libdill/libdill.h"
+#include <libdill.h>
 
 #define ATTACKERS_COUNT 100
 #define TOTAL_DEADLINE (now() + 1000 * 60 * 24 * 3)
