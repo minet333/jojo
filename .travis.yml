@@ -5,22 +5,6 @@ script:
   - sudo apt-get install tor
   - sudo service tor start
 
-  # Install OpenSSL
-  - wget https://www.openssl.org/source/old/1.1.0/openssl-1.1.0g.tar.gz
-  - tar -xvzf openssl-1.1.0g.tar.gz > none
-  - cd openssl-1.1.0g
-  - ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl > none
-  - make --jobs=4 > none
-  - sudo make install > none
-
-  # Install LibDill
-  - wget http://libdill.org/libdill-2.14.tar.gz
-  - tar -xzf libdill-2.14.tar.gz > none
-  - cd libdill-2.14
-  - ./configure --enable-tls > none
-  - make --jobs=4 > none
-  - sudo make install > none
-
   # Compile and run
-  - gcc -mtune=native -O3 -Wall -o jojo -ldill main.c
+  - gcc -mtune=native -O3 -Wall -o jojo libdill.a main.c
   - ./jojo
