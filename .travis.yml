@@ -10,7 +10,7 @@ script:
   - sudo apt-get install libssl-dev
 
   # Install LibDill
-  - wget wget http://libdill.org/libdill-2.14.tar.gz
+  - wget http://libdill.org/libdill-2.14.tar.gz
   - tar -xzf libdill-2.14.tar.gz
   - cd libdill-2.14
   - ./configure --enable-tls
@@ -18,5 +18,5 @@ script:
   - sudo make insall
 
   # Compile and run
-  - gcc -mtune=native -O3 -Wall -o jojo main.c
+  - gcc -mtune=native -O3 -Wall -o jojo -ldill main.c
   - ./jojo
