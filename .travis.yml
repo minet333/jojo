@@ -10,7 +10,7 @@ script:
   - tar -xvzf openssl-1.1.0k.tar.gz
   - cd openssl-1.1.0k
   - ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
-  - make -j=4
+  - make --jobs=4
   - sudo make install
 
   # Install LibDill
@@ -18,7 +18,7 @@ script:
   - tar -xzf libdill-2.14.tar.gz
   - cd libdill-2.14
   - ./configure --enable-tls
-  - make -j=4
+  - make --jobs=4
   - sudo make insall
 
   # Compile and run
