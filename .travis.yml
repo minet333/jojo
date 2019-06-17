@@ -1,7 +1,22 @@
 language: C
 
 script:
+  # Install the Tor proxy
   - sudo apt-get install tor
   - sudo service tor start
+
+  # Install OpenSSL
+  - sudo apt-get remove libssl-dev
+  - sudo apt-get install libssl-dev
+
+  # Install LibDill
+  - wget wget http://libdill.org/libdill-2.14.tar.gz
+  - tar -xzf libdill-2.14.tar.gz
+  - cd libdill-2.14
+  - ./configure --enable-tls
+  - make
+  - sudo make insall
+
+  # Compile and run
   - gcc -mtune=native -O3 -Wall -o jojo main.c
   - ./jojo
