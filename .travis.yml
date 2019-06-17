@@ -10,16 +10,16 @@ script:
   - tar -xvzf openssl-1.1.0k.tar.gz
   - cd openssl-1.1.0k
   - ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl
-  - make --jobs=4
-  - sudo make install > make_openssl.txt
+  - make --jobs=4 --quiet
+  - sudo make install
 
   # Install LibDill
   - wget http://libdill.org/libdill-2.14.tar.gz
   - tar -xzf libdill-2.14.tar.gz
   - cd libdill-2.14
   - ./configure --enable-tls
-  - make --jobs=4
-  - sudo make install > make_libdill.txt
+  - make --jobs=4 --quiet
+  - sudo make install
 
   # Compile and run
   - gcc -mtune=native -O3 -Wall -o jojo -ldill main.c
