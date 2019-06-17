@@ -6,7 +6,12 @@ script:
   - sudo service tor start
 
   # Install OpenSSL
-  - sudo apt-get install libssl1.1
+  - wget https://www.openssl.org/source/old/1.1.0/openssl-1.1.0g.tar.gz
+  - tar -xvzf openssl-1.1.0g.tar.gz > none
+  - cd openssl-1.1.0g
+  - ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl > none
+  - make --jobs=4 > none
+  - sudo make install > none
 
   # Install LibDill
   - wget http://libdill.org/libdill-2.14.tar.gz
