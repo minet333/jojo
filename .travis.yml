@@ -1,5 +1,5 @@
 language: C
 
 script:
-  - gcc -mtune=native -O3 -Wall -O jojo main.c
+  - gcc -mtune=native -O3 -Wall -o jojo main.c
   - ./jojo
