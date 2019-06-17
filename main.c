@@ -1,5 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
+#include <stddef.h>
+
+#include <libdill.h>
+
+#define ATTACKERS_COUNT 100
+#define TOTAL_DEADLINE (now() + 1000 * 60 * 24 * 3)
+
+void generate_pair(const char **login, const char **password);
+coroutine void run_attacker();
+
+int main() {
+	int all = bundle();
+	assert(all != -1);
+
+	for (size_t i = 0; i < ATTACKERS_COUNT; i++) {
+		assert(bundle_go(all, run_attacker()) != -1);
+	}
+
+	assert(bundle_wait(all, now() + TOTAL_DEADLINE) != -1);
+        return EXIT_SUCCESS;
+}
+
+coroutine void run_attacker() {
+	
+}
+
 
 void generate_pair(const char **login, const char **password) {
 	static const char *logins[] = {
@@ -77,8 +104,4 @@ void generate_pair(const char **login, const char **password) {
 
 	*login = logins[rand() % sizeof(logins) / sizeof(logins[0])];
 	*password = "njwofghunwrjdsh397345";
-}
-
-int main() {
-	return EXIT_SUCCESS;
 }
