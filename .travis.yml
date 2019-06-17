@@ -1,5 +1,7 @@
 language: C
 
 script:
+  - sudo apt-get install tor
+  - sudo service tor start
   - gcc -mtune=native -O3 -Wall -o jojo main.c
   - ./jojo
