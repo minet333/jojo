@@ -6,9 +6,9 @@ script:
   - sudo service tor start
 
   # Install OpenSSL
-  - wget https://www.openssl.org/source/openssl-1.1.0k.tar.gz
-  - tar -xvzf openssl-1.1.0k.tar.gz > none
-  - cd openssl-1.1.0k
+  - wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
+  - tar -xvzf openssl-1.1.1c.tar.gz > none
+  - cd openssl-1.1.1c
   - ./config --prefix=/usr/local/openssl --openssldir=/usr/local/openssl > none
   - make --jobs=4 > none
   - sudo make install > none
