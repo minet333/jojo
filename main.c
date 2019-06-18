@@ -54,8 +54,8 @@ void _Noreturn panic(const char *format, ...) {
 
 	fputs("PANIC! ---> ", stderr);
 	vfprintf(stderr, format, args);
-	fputs(".\n", stderr);
-	fprintf(stderr, "SYSTEM ERROR: %s\n!", strerror(errno));
+	fputs("!\n", stderr);
+	fprintf(stderr, "SYSTEM ERROR! ---> %s!\n", strerror(errno));
 
 	va_end(args);
 	abort();
